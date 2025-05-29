@@ -3,7 +3,7 @@ import { IpcRendererEvent } from "electron";
 const electron = require("electron");
 
 electron.contextBridge.exposeInMainWorld("electron", {
-  subscribeStatistics: (callback: (statistics: Statistics) => void) => {
+  subscribeStatistics: (callback) => {
     electron.ipcRenderer.on(
       "statistics",
       (_: IpcRendererEvent, stats: Statistics) => {
@@ -13,4 +13,4 @@ electron.contextBridge.exposeInMainWorld("electron", {
     callback({} as Statistics);
   },
   getStaticData: () => electron.ipcRenderer.invoke("getStaticData"),
-});
+} satisfies Window["electron"]);
