@@ -5,6 +5,7 @@ export function isDev(): boolean {
 }
 
 function ipcHandle<Key extends keyof EventPayloadMapping>(
+  //Use this wrapper and never ipcMain.handle() directly.
   key: Key,
   handler: () => EventPayloadMapping[Key]
 ) {
